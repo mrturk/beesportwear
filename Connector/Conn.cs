@@ -15,9 +15,9 @@ namespace beesportwear.Controllers
             connstring = @"server=localhost;userid=root;password=;database=beesportwear;";
         }
 
-        public string Login(Users gelen)
+        public bool Login(Users gelen)
         {
-            string sonuc = "";
+            bool sonuc = false;
             try
             {
                 using (MySqlConnection connMysql = new MySqlConnection(connstring))
@@ -34,11 +34,11 @@ namespace beesportwear.Controllers
                         {
                             if (reader.Read())
                             {
-                                sonuc = "true";
+                                sonuc = true;
                             }
                             else
                             {
-                                sonuc = "false";
+                                sonuc = false;
                             }
                         }
                     }
@@ -46,7 +46,7 @@ namespace beesportwear.Controllers
             }
             catch (Exception)
             {
-                sonuc = "false";
+                sonuc = false;
             }
             return sonuc;
         }
