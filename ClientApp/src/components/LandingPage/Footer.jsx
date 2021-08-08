@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 const Footer = () => {
 
     return (
-        <footer id="footer" class="bg-one">
-            <div class="top-footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-3 col-md-3 col-lg-3">
+        <footer id="footer" className="bg-one">
+            <div className="top-footer">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-3 col-md-3 col-lg-3">
                             <h3>about</h3>
                             <p>Integer posuere erat a ante venenati dapibus posuere velit aliquet. Fusce dapibus, tellus cursus commodo, tortor mauris sed posuere.</p>
                         </div>
-                        <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div className="col-sm-3 col-md-3 col-lg-3">
                             <ul>
                                 <li><h3>Our Services</h3></li>
                                 <li><a href="#">Graphic Design</a></li>
@@ -19,7 +19,7 @@ const Footer = () => {
                                 <li><a href="#">Web Development</a></li>
                             </ul>
                         </div>
-                        <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div className="col-sm-3 col-md-3 col-lg-3">
                             <ul>
                                 <li><h3>Quick Links</h3></li>
                                 <li><a href="#">Partners</a></li>
@@ -29,7 +29,7 @@ const Footer = () => {
                             </ul>
                         </div>
 
-                        <div class="col-sm-3 col-md-3 col-lg-3">
+                        <div className="col-sm-3 col-md-3 col-lg-3">
                             <ul>
                                 <li><h3>Connect with us Socially</h3></li>
                                 <li><a href="#">Facebook</a></li>
@@ -43,12 +43,12 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+            <div className="footer-bottom">
                 <h5>Copyright 2016. All rights reserved.</h5>
                 <h6>Design and Developed by <a href="">Themefisher</a></h6>
                 <h6>Distributed by <a href="https://themewagon.com/">Themewagon</a></h6>
             </div>
-        </footer>
+        </footer>   
     );
 }
 export default Footer
