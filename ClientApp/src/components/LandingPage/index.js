@@ -1,6 +1,0 @@
-export { default as Footer } from './Footer'
-export { default as NavMenu } from './NavMenu'
-export { default as Slider } from './Slider'
-export { default as Content } from './Content'
-export { default as Layout } from './Layout'
-export { default as Contact } from './Contact'
