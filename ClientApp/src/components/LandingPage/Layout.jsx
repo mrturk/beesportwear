@@ -14,7 +14,6 @@ const Layout = () => {
   return (
     <Fragment>
       <NavMenu />
-      {/* <Slider /> */}
       <Slider />
       <Content />
       <Contact />
