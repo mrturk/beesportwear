@@ -11,7 +11,7 @@ namespace beesportwear.Controllers
     [ApiController]
     public class User : ControllerBase
     {
-        [HttpGet]
+        [HttpPost]
         [Route("api/[controller]/login")]
         public IActionResult Login(Users request)
         {
@@ -20,11 +20,11 @@ namespace beesportwear.Controllers
                 Conn database = new();
                 if (database.Login(request))
                 {
-                    return Ok();
+                    return Ok(true);
                 }
                 else
                 {
-                    return Unauthorized();
+                    return Unauthorized(false);
                 }
             }
             catch (Exception e)
