@@ -28,9 +28,31 @@ namespace beesportwear.Controllers
         [Route("api/[controller]/{id}")]
         public IActionResult GetProduct(int id)
         {
-            Conn database = new();
-            string categoryName=database.getCategory(id);
-            return Ok(database.getProducts(categoryName));
+            try
+            {
+                Conn database = new();
+                string categoryName = database.getCategory(id);
+                return Ok(database.getProducts(categoryName));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/getAllCategoriy")]
+        public IActionResult GetAllCategoriy()
+        {
+            try
+            {
+                Conn database = new();
+                return Ok(database.getAllCategory());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
 
@@ -39,12 +61,19 @@ namespace beesportwear.Controllers
         [Route("api/[controller]/addCatecory")]
         public IActionResult AddCatecory(DtoCategory request)
         {
-            Conn database = new();
-            if (database.addCatecory(request))
+            try
             {
-                return Ok();
+                Conn database = new();
+                if (database.addCatecory(request))
+                {
+                    return Ok();
+                }
+                return BadRequest();
             }
-            return BadRequest();
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
         }
 
 

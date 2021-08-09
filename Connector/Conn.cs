@@ -114,6 +114,7 @@ namespace beesportwear.Controllers
             return response;
         }
 
+
         public bool addProduct(DtoProduct gelen)
         {
             bool response = false;
@@ -147,32 +148,75 @@ namespace beesportwear.Controllers
         public List<Products> getProducts(string categoryName)
         {
             List<Products> alldata = new List<Products>();
-            using (MySqlConnection connMysql = new MySqlConnection(connstring))
+            try
             {
-                using (MySqlCommand command = connMysql.CreateCommand())
+                using (MySqlConnection connMysql = new MySqlConnection(connstring))
                 {
-                    command.CommandText = "SELECT * FROM urunler WHERE kategori_adi=@kategori_adi";
-                    command.Parameters.AddWithValue("@kategori_adi", categoryName);
-                    command.CommandType = System.Data.CommandType.Text;
-                    command.Connection = connMysql;
-                    connMysql.Open();
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    using (MySqlCommand command = connMysql.CreateCommand())
                     {
-                        while (reader.Read())
+                        command.CommandText = "SELECT * FROM urunler WHERE kategori_adi=@kategori_adi";
+                        command.Parameters.AddWithValue("@kategori_adi", categoryName);
+                        command.CommandType = System.Data.CommandType.Text;
+                        command.Connection = connMysql;
+                        connMysql.Open();
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            alldata.Add(new Products
+                            while (reader.Read())
                             {
-                                kategori_adi = reader.GetString(reader.GetOrdinal("kategori_adi")),
-                                urun_cinsi = reader.GetString(reader.GetOrdinal("urun_cinsi")),
-                                fiyat = reader.GetInt32(reader.GetOrdinal("fiyat")),
-                                aciklama = reader.GetString(reader.GetOrdinal("aciklama")),
-                                img_url = reader.GetString(reader.GetOrdinal("img_url")),
-                                id= reader.GetInt32(reader.GetOrdinal("id"))
-                            });
+                                alldata.Add(new Products
+                                {
+                                    kategori_adi = reader.GetString(reader.GetOrdinal("kategori_adi")),
+                                    urun_cinsi = reader.GetString(reader.GetOrdinal("urun_cinsi")),
+                                    fiyat = reader.GetInt32(reader.GetOrdinal("fiyat")),
+                                    aciklama = reader.GetString(reader.GetOrdinal("aciklama")),
+                                    img_url = reader.GetString(reader.GetOrdinal("img_url")),
+                                    id = reader.GetInt32(reader.GetOrdinal("id"))
+                                });
+                            }
                         }
+                        connMysql.Close();
                     }
-                    connMysql.Close();
                 }
+            }
+            catch (Exception)
+            {
+                return alldata;
+            }
+            return alldata;
+        }
+
+
+        public List<Category> getAllCategory()
+        {
+            List<Category> alldata = new List<Category>();
+            try
+            {
+                using (MySqlConnection connMysql = new MySqlConnection(connstring))
+                {
+                    using (MySqlCommand command = connMysql.CreateCommand())
+                    {
+                        command.CommandText = "SELECT * FROM kategoriler ";
+                        command.CommandType = System.Data.CommandType.Text;
+                        command.Connection = connMysql;
+                        connMysql.Open();
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                alldata.Add(new Category
+                                {
+                                    kategori_adi = reader.GetString(reader.GetOrdinal("kategori_adi")),
+                                    id = reader.GetInt32(reader.GetOrdinal("id"))
+                                });
+                            }
+                        }
+                        connMysql.Close();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return alldata;
             }
             return alldata;
         }
