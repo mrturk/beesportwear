@@ -25,7 +25,7 @@ export default function Login() {
   }
   const login = () => {
     axios
-      .post("https://localhost:44359/api/user/login", loginData)
+      .post("http://www.beesportwear.com/api/user/login", loginData)
       .then((response) => {
         console.log(response);
         localStorage.setItem("auth", response.data);
@@ -36,6 +36,7 @@ export default function Login() {
         console.log(err);
       });
   };
+
   useEffect(() => {
     setLoginData({
       username: password,

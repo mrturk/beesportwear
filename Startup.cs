@@ -26,7 +26,7 @@ namespace beesportwear
 
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp/build";
             });
             services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
             {
@@ -58,15 +58,15 @@ namespace beesportwear
             app.UseCors("ApiCorsPolicy");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSpaStaticFiles();
             app.UseRouting();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
+
 
             app.UseSpa(spa =>
             {

@@ -6,6 +6,7 @@ import Contact from "../pages/Contact";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Panel from "../pages/Panel";
+import Product from "../pages/Product";
 export default function Routes() {
   return (
     <Router>
@@ -15,6 +16,7 @@ export default function Routes() {
         <Route exact path="/Contact" component={Contact} />
         <Route exact path="/Login" component={Login} />
         <Route exact path="/Panel" component={Panel} />
+        <Route exact path="/Product/:id" component={Product} />
       </Switch>
       <Footer />
     </Router>
