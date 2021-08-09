@@ -15,16 +15,22 @@ namespace beesportwear.Controllers
         [Route("api/[controller]/login")]
         public IActionResult Login(Users request)
         {
-            Conn database = new();
-            if (database.Login(request))
+            try
             {
-                return Ok();
+                Conn database = new();
+                if (database.Login(request))
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return Unauthorized();
+                }
             }
-            else
+            catch (Exception e)
             {
-                return Unauthorized();
+                return BadRequest(e);
             }
-
         }
     }
 }
