@@ -76,6 +76,23 @@ namespace beesportwear.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("api/[controller]/deleteCategory")]
+
+        public IActionResult DeleteCategory(DeleteItem request)
+        {
+            Conn database = new();
+            return Ok(database.deleteCategory(request));
+        }
+
+        [HttpDelete]
+        [Route("api/[controller]/deleteProduct")]
+
+        public IActionResult DeleteProduct(DeleteItem request)
+        {
+            Conn database = new();
+            return Ok(database.deleteProduct(request));
+        }
 
         [HttpPost]
         [Route("api/[controller]/addProduct")]

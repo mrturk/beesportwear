@@ -80,6 +80,57 @@ namespace beesportwear.Controllers
             return response;
         }
 
+        public bool deleteCategory(DeleteItem request)
+        {
+            bool response = false;
+            try
+            {
+                using (MySqlConnection connMysql = new MySqlConnection(connstring))
+                {
+                    using (MySqlCommand command = connMysql.CreateCommand())
+                    {
+                        connMysql.Open();
+                        command.CommandText = "delete from kategoriler where id=@Id";
+                        command.Parameters.AddWithValue("@Id", request.id);
+                        command.CommandType = System.Data.CommandType.Text;
+                        command.ExecuteNonQuery();
+                        connMysql.Close();
+                        response = true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                response = false;
+            }
+            return response;
+        }
+
+        public bool deleteProduct(DeleteItem request)
+        {
+            bool response = false;
+            try
+            {
+                using (MySqlConnection connMysql = new MySqlConnection(connstring))
+                {
+                    using (MySqlCommand command = connMysql.CreateCommand())
+                    {
+                        connMysql.Open();
+                        command.CommandText = "delete from urunler where id=@Id";
+                        command.Parameters.AddWithValue("@Id", request.id);
+                        command.CommandType = System.Data.CommandType.Text;
+                        command.ExecuteNonQuery();
+                        connMysql.Close();
+                        response = true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                response = false;
+            }
+            return response;
+        }
 
         public string getCategory(int gelen)
         {
