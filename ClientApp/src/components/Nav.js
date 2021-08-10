@@ -1,30 +1,9 @@
-import React, { useEffect, useState, useLayoutEffect, useCallback, useRef } from "react";
-export default function Nav() {
-
-  const [headerBlack, setHeaderBlack] = useState(false);
-
-  const inputEl = useRef(null);
-
-  useEffect(() => {
-    let element = document.querySelector("header[class*='navigation fixed-top sticky-header']")
-    if (element) setHeaderBlack(true);
-    else setHeaderBlack(false);
-  }, [inputEl])
-
-
-
-
-  const elemRef = useCallback((node) => {
-    if (node !== null) {
-      let element = document.querySelector("header[class*='navigation fixed-top sticky-header']")
-      if (element) setHeaderBlack(true);
-      else setHeaderBlack(false);
-    }
-  }, [])
+import React, { useState } from "react";
+const Nav = (props) => {
 
   return (
     <>
-      <header class="navigation fixed-top" ref={inputEl}>
+      <header class="navigation fixed-top">
         <div class="container">
           <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand logo" href="/">
@@ -45,75 +24,72 @@ export default function Nav() {
 
             <div class="collapse navbar-collapse" id="navigation">
               <ul class="navbar-nav ml-auto text-center">
+
                 <li class="nav-item ">
-                  <a class="nav-link" href="/">
+                  <a class="nav-link" onClick={() => props.setActivePage("Home")}>
                     Anasayfa
                   </a>
                 </li>
+
                 <li class="nav-item ">
-                  <a class="nav-link" href="/Products">
+                  <a class="nav-link" onClick={() => props.setActivePage("Products")} >
                     Ürünler
                   </a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="/About">
+
+                {!props.loginStatus && <li class="nav-item ">
+                  <a class="nav-link" onClick={() => props.setActivePage("About")}>
                     Hakkımızda
                   </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="/Services">
+                </li>}
+
+                {!props.loginStatus && <li class="nav-item ">
+                  <a class="nav-link" onClick={() => props.setActivePage("Services")} >
                     Hizmetler
                   </a>
-                </li>
-                {/* <li class="nav-item ">
-                  <a class="nav-link" href="portfolio.html">
-                    Portfolio
-                  </a>
-                </li> */}
-                {/* <li class="nav-item ">
-                  <a class="nav-link" href="team.html">
-                    Team
-                  </a>
-                </li> */}
-                {/* <li class="nav-item ">
-                  <a class="nav-link" href="pricing.html">
-                    Pricing
-                  </a>
-                </li> */}
-                <li class="nav-item ">
-                  <a class="nav-link" href="/Contact">
+                </li>}
+
+                {!props.loginStatus && <li class="nav-item ">
+                  <a class="nav-link" onClick={() => props.setActivePage("Contact")}>
                     İletişim
                   </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="/Login">
-                    Giriş Yap
-                  </a>
-                </li>
-                {/* <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Pages
+                </li>}
+
+
+                {props.loginStatus && <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Ürün
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="404.html">
-                      404 Page
-                    </a>
-                    <a class="dropdown-item" href="blog.html">
-                      Blog Page
-                    </a>
-                    <a class="dropdown-item" href="single-post.html">
-                      Blog Single Page
-                    </a>
+                    <a class="dropdown-item" href="404.html">Ürün Ekle</a>
+                    <a class="dropdown-item" href="blog.html">Ürün Sil</a>
                   </div>
-                </li> */}
+                </li>}
+
+                {props.loginStatus && <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Kategori
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="404.html">Kategori Ekle</a>
+                    <a class="dropdown-item" href="blog.html">Kategori Sil</a>
+                  </div>
+                </li>}
+
+                {!props.loginStatus && < li class="nav-item ">
+                  <a class="nav-link" onClick={() => props.setActivePage("Login")}>
+                    Giriş Yap
+                  </a>
+                </li>}
+
+                {props.loginStatus && < li class="nav-item ">
+                  <a class="nav-link" onClick={() => props.setLoginStatus(false)}>
+                    Çıkış Yap
+                  </a>
+                </li>}
+
               </ul>
             </div>
           </nav>
@@ -122,3 +98,5 @@ export default function Nav() {
     </>
   );
 }
+
+export default Nav;

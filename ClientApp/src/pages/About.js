@@ -1,5 +1,5 @@
 import React from "react";
-export default function About() {
+export default function About(props) {
     return (
         <>
             <section class="single-page-header">

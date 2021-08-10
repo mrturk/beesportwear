@@ -1,5 +1,13 @@
 import React from "react";
-export default function Login() {
+export default function Login(props) {
+
+
+
+    const onLogin = () => {
+        props.setLoginStatus(true);
+        props.setActivePage("Home");
+    }
+
     return (
         <>
             <section class="single-page-header">
@@ -66,7 +74,7 @@ export default function Login() {
                         </div>
 
                         <div class="contact-form col-md-6 " >
-                            <form id="contact-form" method="post" role="form">
+                            <form id="contact-form" role="form">
                                 <div class="form-group">
                                     <input type="text" placeholder="Kullanıcı Adı" class="form-control" name="name" id="name" />
                                 </div>
@@ -83,7 +91,7 @@ export default function Login() {
                                     Sorry, don't know what happened. Try later :(
                                 </div>
                                 <div id="cf-submit">
-                                    <input type="submit" id="contact-submit" class="btn btn-transparent" value="Giriş Yap" />
+                                    <input id="contact-submit" class="btn btn-transparent" value="Giriş Yap" onClick={() => onLogin()} />
                                 </div>
 
                             </form>

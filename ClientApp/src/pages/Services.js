@@ -1,5 +1,5 @@
 import React from "react";
-export default function Contact() {
+export default function Services(props) {
     return (<>
 
         <section class="single-page-header">
