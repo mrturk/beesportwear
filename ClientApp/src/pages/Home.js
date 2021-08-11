@@ -1,180 +1,171 @@
-import React from "react";
-export default function Home() {
+import React, { useEffect, useState } from "react";
+import { Modal } from "antd";
+
+const ModalContentStyle = {
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+}
+
+
+export default function Home(props) {
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState({
+    id: null,
+    kategori_adi: "",
+    urun_cinsi: "",
+    fiyat: null,
+    aciklama: "",
+    img_url: "",
+  });
+
+  const showModal = (productInfo) => {
+    setCurrentProduct(productInfo);
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <>
       <div
         id="carouselExampleIndicators"
-        class="carousel slide"
+        className="carousel slide"
         data-ride="carousel"
+        style={{ height: "100vh", width: "100vw" }}
       >
-        <ol class="carousel-indicators">
-          <li
-            data-target="#carouselExampleIndicators"
-            data-slide-to="0"
-            class="active"
-          ></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <ol className="carousel-indicators" style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active" style={{ marginTop: "-50px" }}></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1" style={{ marginTop: "-50px" }}></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2" style={{ marginTop: "-50px" }}></li>
         </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
             <img
-              class="d-block w-100"
-              src="https://analyticsindiamag.com/wp-content/uploads/2020/10/7d744a684fe03ebc7e8de545f97739dd.jpg"
+              className="d-block w-100"
+              src="images/client-logo/Home1_.jpeg"
               alt="First slide"
+              style={{ width: "99vw", height: "99vh" }}
             />
+            <div className="carousel-caption d-none d-md-block" style={{ alignContent: "center", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+              <h2>Bee Sport Wear</h2>
+            </div>
           </div>
-          <div class="carousel-item">
+          <div className="carousel-item" style={{ width: "100vw", height: "98vh" }}>
             <img
-              class="d-block w-100"
-              src="https://analyticsindiamag.com/wp-content/uploads/2020/10/7d744a684fe03ebc7e8de545f97739dd.jpg"
+              className="d-block w-100"
+              src="images/client-logo/Home2_.jpeg"
               alt="Second slide"
+              style={{ width: "100vw", height: "100vh" }}
             />
+            <div className="carousel-caption d-none d-md-block" style={{ alignContent: "center", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+              <h2>Bee Sport Wear</h2>
+            </div>
           </div>
-          <div class="carousel-item">
+          <div className="carousel-item">
             <img
-              class="d-block w-100"
-              src="https://analyticsindiamag.com/wp-content/uploads/2020/10/7d744a684fe03ebc7e8de545f97739dd.jpg"
+              className="d-block w-100"
+              src="images/client-logo/Home3_.jpeg"
               alt="Third slide"
+              style={{ width: "100vw", height: "100vh" }}
             />
+            <div className="carousel-caption d-none d-md-block" style={{ alignContent: "center", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
+              <h2>Bee SportsWear</h2>
+            </div>
           </div>
         </div>
         <a
-          class="carousel-control-prev"
+          className="carousel-control-prev"
           href="#carouselExampleIndicators"
           role="button"
           data-slide="prev"
         >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="sr-only">Previous</span>
         </a>
         <a
-          class="carousel-control-next"
+          className="carousel-control-next"
           href="#carouselExampleIndicators"
           role="button"
           data-slide="next"
         >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="sr-only">Next</span>
         </a>
       </div>
-      <section class="blog" id="blog">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <div class="title text-center ">
-                <h2>
-                  {" "}
-                  BAŞLICA <span class="color">KATEGORİLER</span>
-                </h2>
-                <div class="border"></div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Ducimus facere accusamus, reprehenderit libero inventore nam.
-                </p>
+
+
+
+
+
+      <section className="blog" id="blog">
+        <div className="container">
+          <div className="row">
+
+            <div className="col-12">
+              <div className="title text-center ">
+                <h2> Popüler <span className="color">Ürünler</span></h2>
+                <div className="border"></div>
+                {/* <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus facere accusamus,
+                  reprehenderit libero
+                  inventore nam.</p> */}
               </div>
             </div>
-            <article class="col-md-3 col-sm-6 col-xs-12 clearfix ">
-              <div class="post-item">
-                <div class="media-wrapper">
-                  <img
-                    src="images/blog/post-1.jpg"
-                    alt="amazing caves coverimage"
-                    class="img-fluid"
-                  />
-                </div>
 
-                <div class="content">
-                  <h3>
-                    <a href="single-post.html">Reasons to Smile</a>
-                  </h3>
-                  <p>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                    accusamus terry richardson ad squid. 3 wolf moon officia
-                    aute, non skateboard dolor brunch.
-                  </p>
-                  <a class="btn btn-main" href="single-post.html">
-                    Read more
-                  </a>
+            <Modal title="Ürün Detayı" visible={isModalVisible} footer={<div></div>} onOk={handleOk} onCancel={handleCancel} width={"50vw"} height={"70vh"}>
+              <div className="container-fluid" >
+                <div className="row " >
+                  <div className="col-md-6 col-sm-6 col-xs-6 filtr-item" style={{ height: "50vh" }}>
+                    <img style={{ height: "50vh", width: "inherit" }} src={"images/portfolio/portfolio-1.jpg"} />
+                  </div>
+
+
+                  <div className="col-md-6 col-sm-6 col-xs-6 filtr-item" style={{ height: "50vh", width: "inherit" }}>
+
+
+                    <div className="container-fluid" >
+                      <div className="row " >
+                        <div className="col-md-6 col-sm-6 col-xs-6 filtr-item" ><h4 title={"Fiyat:"} style={ModalContentStyle}>Fiyat:</h4></div>
+                        <div className="col-md-6 col-sm-6 col-xs-6 filtr-item" ><h5 title={currentProduct.fiyat + " ₺"}>{currentProduct.fiyat} ₺</h5></div>
+                      </div>
+                    </div>
+
+                    <div className="container-fluid" >
+                      <div className="row " >
+                        <div className="col-md-6 col-sm-6 col-xs-6 filtr-item" ><h4 title={"Kategori:"} style={ModalContentStyle}>Kategori:</h4></div>
+                        <div className="col-md-6 col-sm-6 col-xs-6 filtr-item" ><h5 title={currentProduct.kategori_adi}>{currentProduct.kategori_adi}</h5></div>
+                      </div>
+                    </div>
+
+                    <div className="container-fluid" >
+                      <div className="row " >
+                        <div className="col-md-6 col-sm-6 col-xs-6 filtr-item" ><h4 title={"Ürün Tipi:"} style={ModalContentStyle}>Ürün Tipi:</h4></div>
+                        <div className="col-md-6 col-sm-6 col-xs-6 filtr-item" ><h5 title={currentProduct.urun_cinsi}>{currentProduct.urun_cinsi}</h5></div>
+                      </div>
+                    </div>
+
+                    <div className="container-fluid" >
+                      <div className="row " >
+                        <div className="col-md-6 col-sm-6 col-xs-6 filtr-item" ><h4 title={"Ürün Açıklaması:"} style={ModalContentStyle}>Ürün Açıklaması:</h4></div>
+                        <div className="col-md-6 col-sm-6 col-xs-6 filtr-item" ><h5 title={currentProduct.aciklama}>{currentProduct.aciklama}</h5></div>
+                      </div>
+                    </div>
+
+
+                  </div>
                 </div>
               </div>
-            </article>
+            </Modal>
 
-            <article class="col-md-3 col-sm-6 col-xs-12 ">
-              <div class="post-item">
-                <div class="media-wrapper">
-                  <img
-                    src="images/blog/post-2.jpg"
-                    alt="amazing caves coverimage"
-                    class="img-fluid"
-                  />
-                </div>
 
-                <div class="content">
-                  <h3>
-                    <a href="single-post.html">A Few Moments</a>
-                  </h3>
-                  <p>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                    accusamus terry richardson ad squid. 3 wolf moon officia
-                    aute, non skateboard dolor brunch.
-                  </p>
-                  <a class="btn btn-main" href="single-post.html">
-                    Read more
-                  </a>
-                </div>
-              </div>
-            </article>
-            <article class="col-md-3 col-sm-6 col-xs-12 ">
-              <div class="post-item">
-                <div class="media-wrapper">
-                  <img
-                    src="images/blog/post-3.jpg"
-                    alt="amazing caves coverimage"
-                    class="img-fluid"
-                  />
-                </div>
 
-                <div class="content">
-                  <h3>
-                    <a href="single-post.html">Hints for Life</a>
-                  </h3>
-                  <p>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                    accusamus terry richardson ad squid. 3 wolf moon officia
-                    aute, non skateboard dolor brunch.
-                  </p>
-                  <a class="btn btn-main" href="single-post.html">
-                    Read more
-                  </a>
-                </div>
-              </div>
-            </article>
-            <article class="col-md-3 col-sm-6 col-xs-12 ">
-              <div class="post-item">
-                <div class="media-wrapper">
-                  <img
-                    src="images/blog/post-3.jpg"
-                    alt="amazing caves coverimage"
-                    class="img-fluid"
-                  />
-                </div>
-
-                <div class="content">
-                  <h3>
-                    <a href="single-post.html">Hints for Life</a>
-                  </h3>
-                  <p>
-                    Anim pariatur cliche reprehenderit, enim eiusmod high life
-                    accusamus terry richardson ad squid. 3 wolf moon officia
-                    aute, non skateboard dolor brunch.
-                  </p>
-                  <a class="btn btn-main" href="single-post.html">
-                    Read more
-                  </a>
-                </div>
-              </div>
-            </article>
           </div>
         </div>
       </section>

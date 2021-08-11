@@ -2,23 +2,21 @@ import React from "react";
 export default function Footer() {
   return (
     <>
-      <footer id="footer" class="bg-one">
-        <div class="top-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-3 col-md-3 col-lg-3">
-                <h3>about</h3>
+      <footer id="footer" className="bg-one">
+        <div className="top-footer">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-3 col-md-3 col-lg-3">
+                <h3>Hakkımızda</h3>
                 <p>
-                  Integer posuere erat a ante venenati dapibus posuere velit
-                  aliquet. Fusce dapibus, tellus cursus commodo, tortor mauris
-                  sed posuere.
+                  Bee SportsWear
                 </p>
               </div>
 
-              <div class="col-sm-3 col-md-3 col-lg-3">
+              <div className="col-sm-3 col-md-3 col-lg-3">
                 <ul>
                   <li>
-                    <h3>Our Services</h3>
+                    <h3>Hizmetler</h3>
                   </li>
                   <li>
                     <a href="#">Graphic Design</a>
@@ -32,30 +30,27 @@ export default function Footer() {
                 </ul>
               </div>
 
-              <div class="col-sm-3 col-md-3 col-lg-3">
+              <div className="col-sm-3 col-md-3 col-lg-3">
                 <ul>
                   <li>
-                    <h3>Quick Links</h3>
+                    <h3>Hızlı Bağlantılar</h3>
                   </li>
                   <li>
-                    <a href="#">Partners</a>
+                    <a href="#">İşbirlikleri</a>
                   </li>
                   <li>
-                    <a href="#">About</a>
+                    <a href="#">Hakkımızda</a>
                   </li>
                   <li>
-                    <a href="#">FAQ’s</a>
-                  </li>
-                  <li>
-                    <a href="#">Badges</a>
+                    <a href="#">İletişim</a>
                   </li>
                 </ul>
               </div>
 
-              <div class="col-sm-3 col-md-3 col-lg-3">
+              <div className="col-sm-3 col-md-3 col-lg-3">
                 <ul>
                   <li>
-                    <h3>Connect with us Socially</h3>
+                    <h3>Sosyal medyadan bize ulaşın</h3>
                   </li>
                   <li>
                     <a href="#">Facebook</a>
@@ -66,21 +61,18 @@ export default function Footer() {
                   <li>
                     <a href="#">Youtube</a>
                   </li>
-                  <li>
-                    <a href="#">Pinterest</a>
-                  </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer-bottom">
-          <h5>Copyright 2016. All rights reserved.</h5>
+        <div className="footer-bottom">
+          <h5>Copyright 2021. All rights reserved.</h5>
           <h6>
-            Design and Developed by <a href="">Themefisher</a>
+            Design and Developed by <a href="">Yunus Emre Çıracı</a>
           </h6>
           <h6>
-            Distributed by <a href="https://themewagon.com/">Themewagon</a>
+            Distributed by <a href="">Kaan B.</a>
           </h6>
         </div>
       </footer>
