@@ -55,7 +55,20 @@ namespace beesportwear.Controllers
             }
         }
 
-
+        [HttpGet]
+        [Route("api/[controller]/getAllProduct")]
+        public IActionResult GetAllProduct()
+        {
+            try
+            {
+                Conn database = new();
+                return Ok(database.getAllProduct());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e);
+            }
+        }
 
         [HttpPost]
         [Route("api/[controller]/addCatecory")]
@@ -76,7 +89,7 @@ namespace beesportwear.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPost]
         [Route("api/[controller]/deleteCategory")]
 
         public IActionResult DeleteCategory(DeleteItem request)
@@ -85,7 +98,7 @@ namespace beesportwear.Controllers
             return Ok(database.deleteCategory(request));
         }
 
-        [HttpDelete]
+        [HttpPost]
         [Route("api/[controller]/deleteProduct")]
 
         public IActionResult DeleteProduct(DeleteItem request)
