@@ -1,42 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-export default function Nav() {
-  const [responseData, setResponseData] = useState([]);
-  const names = ["a", "b"];
+
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
+
+
+const Nav = (props) => {
+
+  const [categories, setCategories] = useState([]);
+
   useEffect(() => {
-    axios
-      .get("http://www.beesportwear.com/api/Product/getAllCategoriy")
-      .then((response) => {
-        setResponseData(response.data);
-        console.log(response.data);
-        localStorage.setItem("category", JSON.stringify(response.data));
+
+    axios.get(`http://www.beesportwear.com/api/Product/getAllCategoriy`)
+      .then(res => {
+
+        setCategories(res.data);
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+
+  }, [])
+
+  const onClickCategori = (categoriId) => {
+    props.setActivePage("Products");
+    props.getProductsByCategory(categoriId);
+  }
+
+  const getHeader = () => {
+    return (
+      <>
+        <h2 className="logo-default">SportWear</h2>
+        <h2 className="logo-white" >SportWear</h2>
+      </>
+    );
+  }
+
   return (
     <>
-      <header class="navigation fixed-top">
-        <div class="container">
-          <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand logo" href="index.html">
-              <img
-                style={{ width: "50px", borderRadius: "50%" }}
-                class="logo-default"
-                src="images/logobeesport.PNG"
-                alt="logo"
-              />
-              <img
-                style={{ width: "50px", borderRadius: "50%" }}
-                class="logo-white"
-                src="images/logobeesport.PNG"
-                alt="logo"
-              />
+      <header className="navigation fixed-top">
+        <div className="container">
+          <nav className="navbar navbar-expand-lg navbar-light">
+            <a className="navbar-brand logo" href="/" style={{ display: 'flex' }}>
+              <h2 style={{ color: "#CEE124" }}>Bee </h2>  {props.activePage === "Products" ? getHeader() : <h2 style={{ color: "black" }}> SportWear</h2>}
+
+
             </a>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navigation"
@@ -44,50 +50,86 @@ export default function Nav() {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navigation">
-              <ul class="navbar-nav ml-auto text-center">
-                <li class="nav-item">
-                  <Link class="nav-link" to={"/"}>
+            <div className="collapse navbar-collapse" id="navigation">
+              <ul className="navbar-nav ml-auto text-center">
+
+                <li className="nav-item ">
+                  <a className="nav-link" onClick={() => props.setActivePage("Home")}>
                     Anasayfa
-                  </Link>
-                </li>
-                <li class="nav-item ">
-                  <Link class="nav-link" to={"/Hakkimizda"}>
-                    Hakkımızda
-                  </Link>
-                </li>
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    Kategoriler
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {responseData.map((response) => (
-                      <Link
-                        key={response.id}
-                        class="dropdown-item"
-                        to={"/Product/" + response.id}
-                      >
-                        {response.kategori_adi}
-                      </Link>
-                    ))}
+                </li>
+
+                {true && <li className="nav-item dropdown">
+                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Ürünler
+                  </a>
+                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                    {categories.map(i => {
+                      return (<a key={i.id.toString()} className="dropdown-item" onClick={() => onClickCategori(i.id)}>{i.kategori_adi}</a>);
+                    })}
+                    {/* <a className="dropdown-item" href="blog.html">Kategori Sil</a> */}
                   </div>
-                </li>
-                <li class="nav-item ">
-                  <Link class="nav-link" to={"/Iletisim"}>
+                </li>}
+
+                {!props.loginStatus && <li className="nav-item ">
+                  <a className="nav-link" onClick={() => props.setActivePage("About")}>
+                    Hakkımızda
+                  </a>
+                </li>}
+
+                {!props.loginStatus && <li className="nav-item ">
+                  <a className="nav-link" onClick={() => props.setActivePage("Services")} >
+                    Hizmetler
+                  </a>
+                </li>}
+
+                {!props.loginStatus && <li className="nav-item ">
+                  <a className="nav-link" onClick={() => props.setActivePage("Contact")}>
                     İletişim
-                  </Link>
-                </li>
+                  </a>
+                </li>}
+
+
+                {props.loginStatus && <li className="nav-item dropdown">
+                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Ürün
+                  </a>
+                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a className="dropdown-item" onClick={() => props.setActivePage("AddProduct")}>Ürün Ekle</a>
+                    <a className="dropdown-item" onClick={() => props.setActivePage("DeleteProduct")}>Ürün Sil</a>
+                  </div>
+                </li>}
+
+                {props.loginStatus && <li className="nav-item dropdown">
+                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Kategori
+                  </a>
+                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a className="dropdown-item" onClick={() => props.setActivePage("AddCategory")}>Kategori Ekle</a>
+                    <a className="dropdown-item" onClick={() => props.setActivePage("DeleteCategory")}>Kategori Sil</a>
+                  </div>
+                </li>}
+
+                {!props.loginStatus && < li className="nav-item ">
+                  <a className="nav-link" onClick={() => props.setActivePage("Login")}>
+                    Giriş Yap
+                  </a>
+                </li>}
+
+                {props.loginStatus && < li className="nav-item ">
+                  <a className="nav-link" onClick={() => props.setLoginStatus(false)}>
+                    Çıkış Yap
+                  </a>
+                </li>}
+
+
               </ul>
             </div>
           </nav>
@@ -96,3 +138,5 @@ export default function Nav() {
     </>
   );
 }
+
+export default Nav;

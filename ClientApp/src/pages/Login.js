@@ -1,111 +1,98 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
-import "./login.css";
-export default function Login() {
-  let history = useHistory();
-  const [loginData, setLoginData] = useState({
-    username: "",
-    password: "",
-  });
 
-  const [username, setUsername] = useState();
+import React, { useState } from "react";
+import axios from 'axios';
+import { message } from "antd";
 
-  const [password, setPassword] = useState();
+export default function Login(props) {
 
-  const handleChangePassword = (e) => {
-    setUsername(e.target.value);
-  };
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
-  const handleChangeUsername = (e) => {
-    setPassword(e.target.value);
-  };
-  function handlePanel() {
-    history.push("/Panel");
-  }
-  const login = () => {
-    axios
-      .post("http://www.beesportwear.com/api/user/login", loginData)
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem("auth", response.data);
-        console.log(localStorage.getItem("auth"));
-        handlePanel();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    const onLogin = () => {
+        const payload = { username: username, password: password };
+        axios.post('http://www.beesportwear.com/api/User/login', payload)
+            .then(response => {
+                if (response.data) {
+                    props.setLoginStatus(true);
+                    props.setActivePage("Home");
+                }
+                else {
+                    message.warning({
+                        content: 'Kullanıcı adı veya şifre hatalı. Lütfen tekrar deneyiniz...',
+                        className: 'custom-class',
+                        style: {
+                            marginTop: '20vh',
+                        },
+                    });
+                }
+            }).catch(err => {
+                message.warning({
+                    content: 'Kullanıcı adı veya şifre hatalı. Lütfen tekrar deneyiniz...',
+                    className: 'custom-class',
+                    style: {
+                        marginTop: '20vh',
+                    },
+                });
+            })
+    }
 
-  useEffect(() => {
-    setLoginData({
-      username: password,
-      password: username,
-    });
-  }, [password, username]);
+    return (
+        <>
+            <section className="single-page-header">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h2>Giriş Yap</h2>
+                            <ol className="breadcrumb header-bradcrumb">
 
-  return (
-    <>
-      <div class="container">
-        <div class="d-flex justify-content-center h-100">
-          <div class="card">
-            <div class="card-header">
-              <h3>Sign In</h3>
-              <div class="d-flex justify-content-end social_icon">
-                <span>
-                  <i class="fab fa-facebook-square"></i>
-                </span>
-                <span>
-                  <i class="fab fa-google-plus-square"></i>
-                </span>
-                <span>
-                  <i class="fab fa-twitter-square"></i>
-                </span>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="input-group form-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fas fa-user"></i>
-                  </span>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="username"
-                  onChange={(event) => {
-                    handleChangeUsername(event);
-                  }}
-                />
-              </div>
-              <div class="input-group form-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fas fa-key"></i>
-                  </span>
+            </section>
+
+            <section className="contact-us" id="contact">
+                <div className="container">
+                    <div className="row">
+
+
+                        <div className="col-12">
+                            <div className="title text-center" >
+                                <h2>Giriş Yap</h2>
+                                <div className="border"></div>
+                            </div>
+                        </div>
+
+                        <div className="col-3">
+
+                        </div>
+
+                        <div className="contact-form col-md-6 " >
+                            <form>
+                                <div className="form-group">
+                                    <input type="text" placeholder="Kullanıcı Adı" className="form-control" name="name" id="name" onChange={(args) => setUsername(args.target.value)} />
+                                </div>
+
+                                <div className="form-group">
+                                    <input type="password" placeholder="Şifre" className="form-control" name="email" id="email" onChange={(args) => setPassword(args.target.value)} />
+                                </div>
+                                <div>
+                                    <input id="contact-submit" className="btn btn-transparent" value="Giriş Yap" onClick={() => onLogin()} />
+                                    {/* <button id="contact-submit" onClick={() => onLogin()} className="btn btn-transparent">Giriş Yap</button> */}
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div className="col-3">
+
+                        </div>
+
+
+                    </div>
                 </div>
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="password"
-                  onChange={(event) => {
-                    handleChangePassword(event);
-                  }}
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="button"
-                  value="Login"
-                  class="btn float-right login_btn"
-                  onClick={login}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+            </section>
+
+        </>
+    )
 }
