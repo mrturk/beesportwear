@@ -7,14 +7,30 @@ import About from "../pages/About";
 import Services from "../pages/Services";
 import Login from "../pages/Login";
 import Products from "../pages/Products";
+import DeleteProduct from "../pages/DeleteProduct";
+import AddProduct from "../pages/AddProduct";
+import AddCategory from "../pages/AddCategory";
 
 
+import axios from 'axios';
 
 import Home from "../pages/Home";
 export default function Routes() {
 
-  const [loginStatus, setLoginStatus] = useState(false);
+  const [loginStatus, setLoginStatus] = useState(true);
   const [activePage, setActivePage] = useState("Home");
+  const [products, setProducts] = useState([]);
+
+
+
+  const getProductsByCategory = (categoriId) => {
+    axios.get(`http://www.beesportwear.com/api/Product/${categoriId}`)
+      .then(res => {
+        setProducts(res.data);
+      })
+  }
+
+
 
   const returnPageByName = () => {
 
@@ -23,6 +39,10 @@ export default function Routes() {
       activePage,
       setLoginStatus,
       setActivePage,
+      getProductsByCategory,
+      products,
+      // allProducts,
+      // getAllProductsByCategories,
     }
 
     switch (activePage) {
@@ -40,6 +60,12 @@ export default function Routes() {
         return <Products {...props} />
       case "Login":
         return <Login {...props} />
+      case "DeleteProduct":
+        return <DeleteProduct {...props} />
+      case "AddProduct":
+        return <AddProduct {...props} />
+      case "AddCategory":
+        return <AddCategory {...props} />
 
       default:
         return <Home />;
@@ -49,10 +75,13 @@ export default function Routes() {
   return (
     <Router>
       <Nav
+        id="Navbar"
         loginStatus={loginStatus}
         setLoginStatus={setLoginStatus}
         activePage={activePage}
         setActivePage={setActivePage}
+        getProductsByCategory={getProductsByCategory}
+      // getAllProductsByCategories={getAllProductsByCategories}
       />
       {returnPageByName()}
       <Footer />

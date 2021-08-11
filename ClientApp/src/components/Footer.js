@@ -2,18 +2,18 @@ import React from "react";
 export default function Footer() {
   return (
     <>
-      <footer id="footer" class="bg-one">
-        <div class="top-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-3 col-md-3 col-lg-3">
+      <footer id="footer" className="bg-one">
+        <div className="top-footer">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-3 col-md-3 col-lg-3">
                 <h3>Hakkımızda</h3>
                 <p>
                   Bee SportsWear
                 </p>
               </div>
 
-              <div class="col-sm-3 col-md-3 col-lg-3">
+              <div className="col-sm-3 col-md-3 col-lg-3">
                 <ul>
                   <li>
                     <h3>Hizmetler</h3>
@@ -30,7 +30,7 @@ export default function Footer() {
                 </ul>
               </div>
 
-              <div class="col-sm-3 col-md-3 col-lg-3">
+              <div className="col-sm-3 col-md-3 col-lg-3">
                 <ul>
                   <li>
                     <h3>Hızlı Bağlantılar</h3>
@@ -47,7 +47,7 @@ export default function Footer() {
                 </ul>
               </div>
 
-              <div class="col-sm-3 col-md-3 col-lg-3">
+              <div className="col-sm-3 col-md-3 col-lg-3">
                 <ul>
                   <li>
                     <h3>Sosyal medyadan bize ulaşın</h3>
@@ -66,7 +66,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div class="footer-bottom">
+        <div className="footer-bottom">
           <h5>Copyright 2021. All rights reserved.</h5>
           <h6>
             Design and Developed by <a href="">Yunus Emre Çıracı</a>

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import { Modal } from 'antd';
+import { Modal, Button } from 'antd';
 
 const ModalContentStyle = {
     textOverflow: 'ellipsis',
@@ -8,9 +8,10 @@ const ModalContentStyle = {
     whiteSpace: 'nowrap',
 }
 
-export default function Products(props) {
+export default function DeleteProduct(props) {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [allProducts, setAllProducts] = useState([]);
     const [currentProduct, setCurrentProduct] = useState({
         id: null,
         kategori_adi: "",
@@ -19,6 +20,25 @@ export default function Products(props) {
         aciklama: "",
         img_url: "",
     });
+
+    const getAllProductsByCategories = () => {
+        axios.get(`http://www.beesportwear.com/api/Product/getAllProduct`)
+            .then(res => {
+                setAllProducts(res.data);
+            })
+    }
+
+    useEffect(() => {
+        getAllProductsByCategories();
+    }, []);
+
+    const deleteProduct = (productId) => {
+        const payload = { id: productId };
+        axios.post(`http://www.beesportwear.com/api/Product/deleteProduct`, payload)
+            .then(res => {
+                getAllProductsByCategories();
+            })
+    }
 
     const showModal = (productInfo) => {
         setCurrentProduct(productInfo);
@@ -35,7 +55,6 @@ export default function Products(props) {
 
     return (
         <>
-
             <Modal title="Ürün Detayı" visible={isModalVisible} footer={<div></div>} onOk={handleOk} onCancel={handleCancel} width={"50vw"} height={"70vh"}>
                 <div className="container-fluid" >
                     <div className="row " >
@@ -92,12 +111,10 @@ export default function Products(props) {
                                 <div className="border"></div>
                             </div>
 
-
                             <div className="row filtr-container">
 
-                                {/* <ProductModal /> */}
 
-                                {props.products.map(i => {
+                                {allProducts.map(i => {
                                     return (
 
                                         <div key={i.id.toString()} className="col-md-3 col-sm-6 col-xs-6 filtr-item " data-category="mix, design" >
@@ -113,12 +130,12 @@ export default function Products(props) {
                                                         <h4><a>Ürün Detayları</a></h4>
                                                     </div>
                                                 </div>
+                                                <Button block type="primary" danger onClick={() => deleteProduct(i.id)}>Sil</Button>
                                             </div>
                                         </div>
 
                                     )
                                 })}
-
 
                             </div>
                         </div>

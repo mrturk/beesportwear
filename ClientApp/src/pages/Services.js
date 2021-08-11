@@ -2,14 +2,14 @@ import React from "react";
 export default function Services(props) {
     return (<>
 
-        <section class="single-page-header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
+        <section className="single-page-header">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
                         <h2>Hizmetlerimiz</h2>
-                        <ol class="breadcrumb header-bradcrumb">
+                        <ol className="breadcrumb header-bradcrumb">
                             {/* <li><a href="index.html">Home</a></li>
-                            <li class="active">Our Services</li> */}
+                            <li className="active">Our Services</li> */}
                         </ol>
                     </div>
                 </div>
@@ -17,23 +17,23 @@ export default function Services(props) {
         </section>
 
 
-        <section class="services" id="services">
-            <div class="container">
-                <div class="row no-gutters">
+        <section className="services" id="services">
+            <div className="container">
+                <div className="row no-gutters">
 
-                    <div class="col-12">
-                        <div class="title text-center">
+                    <div className="col-12">
+                        <div className="title text-center">
                             <h2>Our Services</h2>
                             <p>Vestibulum nisl tortor, consectetur quis imperdiet bibendum, laoreet sed arcu. Sed condimentum iaculis ex,
                                 in faucibus lorem accumsan non. Donec mattis tincidunt metus. Morbi sed tortor a risus luctus dignissim.</p>
-                            <div class="border"></div>
+                            <div className="border"></div>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <div class="service-block p-4 color-bg text-center">
-                            <div class="service-icon text-center">
-                                <i class="tf-ion-ios-copy-outline"></i>
+                    <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <div className="service-block p-4 color-bg text-center">
+                            <div className="service-icon text-center">
+                                <i className="tf-ion-ios-copy-outline"></i>
                             </div>
                             <h3>WordPress Theme</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur.. Sed id lorem eget orci dictum facilisis vel id tellus. Nullam
@@ -41,10 +41,10 @@ export default function Services(props) {
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <div class="service-block p-4 text-center">
-                            <div class="service-icon text-center">
-                                <i class="tf-ion-ios-alarm-outline"></i>
+                    <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <div className="service-block p-4 text-center">
+                            <div className="service-icon text-center">
+                                <i className="tf-ion-ios-alarm-outline"></i>
                             </div>
                             <h3>Responsive Design</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur.. Sed id lorem eget orci dictum facilisis vel id tellus. Nullam
@@ -52,10 +52,10 @@ export default function Services(props) {
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <div class="service-block p-4 color-bg text-center">
-                            <div class="service-icon text-center">
-                                <i class="tf-ion-ios-book-outline"></i>
+                    <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <div className="service-block p-4 color-bg text-center">
+                            <div className="service-icon text-center">
+                                <i className="tf-ion-ios-book-outline"></i>
                             </div>
                             <h3>Media &amp; Advertisement</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur.. Sed id lorem eget orci dictum facilisis vel id tellus. Nullam
@@ -63,20 +63,20 @@ export default function Services(props) {
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <div class="service-block p-4  text-center">
-                            <div class="service-icon text-center">
-                                <i class="tf-ion-ios-briefcase-outline"></i>
+                    <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <div className="service-block p-4  text-center">
+                            <div className="service-icon text-center">
+                                <i className="tf-ion-ios-briefcase-outline"></i>
                             </div>
                             <h3>Graphic Design</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur.. Sed id lorem eget orci dictum facilisis vel id tellus. Nullam
                                 iaculis arcu at mauris dapibus consectetur.</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <div class="service-block p-4 color-bg text-center">
-                            <div class="service-icon text-center">
-                                <i class="tf-ion-ios-crop"></i>
+                    <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <div className="service-block p-4 color-bg text-center">
+                            <div className="service-icon text-center">
+                                <i className="tf-ion-ios-crop"></i>
                             </div>
                             <h3>Apps Development</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur.. Sed id lorem eget orci dictum facilisis vel id tellus. Nullam
@@ -84,10 +84,10 @@ export default function Services(props) {
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                        <div class="service-block p-4 text-center">
-                            <div class="service-icon text-center">
-                                <i class="tf-ion-ios-home-outline"></i>
+                    <div className="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                        <div className="service-block p-4 text-center">
+                            <div className="service-icon text-center">
+                                <i className="tf-ion-ios-home-outline"></i>
                             </div>
                             <h3>Networking</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur.. Sed id lorem eget orci dictum facilisis vel id tellus. Nullam
@@ -104,58 +104,58 @@ export default function Services(props) {
 
 
 
-        <section class="team-skills section-sm" id="skills">
-            <div class="container">
-                <div class="row">
+        <section className="team-skills section-sm" id="skills">
+            <div className="container">
+                <div className="row">
 
-                    <div class="col-12">
-                        <div class="title text-center">
+                    <div className="col-12">
+                        <div className="title text-center">
                             <h2>Our Skills</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus fugiat, vel veniam, eos et
                                 delectus eveniet molestiae. Esse, voluptas ratione.</p>
-                            <div class="border"></div>
+                            <div className="border"></div>
                         </div>
                     </div>
 
 
-                    <div class="col-md-5">
-                        <div class="team-skills-content">
+                    <div className="col-md-5">
+                        <div className="team-skills-content">
                             <h2>Simple To Start</h2>
                             <p>Vestibulum nisl tortor, consectetur quis imperdiet bium, letcu. Sedndime ntumiaculis ex, in
                                 faucibus lorem accumsan non. Donec mattis tin unt metuorbi sed tort Igor aman luctus dignissim.
                                 Vestibulum nisl tortor, consectetur quis imperdiet bium, letcu. Sedndime ntumiaculis ex, in
                                 faucibus lorem accumsan non.</p>
-                            <a href="" class="btn btn-main mt-20">Contact Us</a>
+                            <a href="" className="btn btn-main mt-20">Contact Us</a>
                         </div>
                     </div>
-                    <div class="col-md-6 col-md-offset-1">
-                        <div class="progress-block">
+                    <div className="col-md-6 col-md-offset-1">
+                        <div className="progress-block">
                             <ul>
                                 <li>
                                     <span>Photoshop</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" style={{ width: "90%" }}>
+                                    <div className="progress">
+                                        <div className="progress-bar" style={{ width: "90%" }}>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
                                     <span>Web Application</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" style={{ width: "85%" }}>
+                                    <div className="progress">
+                                        <div className="progress-bar" style={{ width: "85%" }}>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
                                     <span>Andriod Application</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" style={{ width: "92%" }}>
+                                    <div className="progress">
+                                        <div className="progress-bar" style={{ width: "92%" }}>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
                                     <span>IOS Development</span>
-                                    <div class="progress">
-                                        <div class="progress-bar" style={{ width: "78%" }}>
+                                    <div className="progress">
+                                        <div className="progress-bar" style={{ width: "78%" }}>
                                         </div>
                                     </div>
                                 </li>
@@ -164,9 +164,9 @@ export default function Services(props) {
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="clients-slider" class="clients-logo-slider">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div id="clients-slider" className="clients-logo-slider">
                             <img src="images/client-logo/logo1.png" alt="" />
                             <img src="images/client-logo/logo-2.png" alt="" />
                             <img src="images/client-logo/logo-3.png" alt="" />
@@ -184,51 +184,51 @@ export default function Services(props) {
             </div>
         </section>
 
-        <section class="counter-wrapper section-sm" >
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div class="title">
+        <section className="counter-wrapper section-sm" >
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12 text-center">
+                        <div className="title">
                             <h2>Award-Winning Agency</h2>
                             <p>Vestibulum nisl tortor, consectetur quis imperdiet bibendum, laoreet sed arcu. Sed condimentum iaculis ex, in faucibus lorem accumsan non. Donec mattis tincidunt metus. Morbi sed tortor a risus luctus dignissim.</p>
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6 col-xs-6 text-center " >
-                        <div class="counters-item">
-                            <i class="tf-ion-ios-alarm-outline"></i>
+                    <div className="col-md-3 col-sm-6 col-xs-6 text-center " >
+                        <div className="counters-item">
+                            <i className="tf-ion-ios-alarm-outline"></i>
                             <div>
-                                <span class="counter" data-count="150">0</span>
+                                <span className="counter" data-count="150">0</span>
                             </div>
                             <h3>Happy Clients</h3>
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6 col-xs-6 text-center " >
-                        <div class="counters-item">
-                            <i class="tf-ion-ios-analytics-outline"></i>
+                    <div className="col-md-3 col-sm-6 col-xs-6 text-center " >
+                        <div className="counters-item">
+                            <i className="tf-ion-ios-analytics-outline"></i>
                             <div>
-                                <span class="counter" data-count="130">0</span>
+                                <span className="counter" data-count="130">0</span>
                             </div>
                             <h3>Projects completed</h3>
                         </div>
                     </div>
 
-                    <div class="col-md-3 col-sm-6 col-xs-6 text-center "  >
-                        <div class="counters-item">
-                            <i class="tf-ion-ios-compose-outline"></i>
+                    <div className="col-md-3 col-sm-6 col-xs-6 text-center "  >
+                        <div className="counters-item">
+                            <i className="tf-ion-ios-compose-outline"></i>
                             <div>
-                                <span class="counter" data-count="99">0</span>
+                                <span className="counter" data-count="99">0</span>
                             </div>
                             <h3>Positive feedback</h3>
 
                         </div>
                     </div>
-                    <div class="col-md-3 col-sm-6 col-xs-6 text-center ">
-                        <div class="counters-item kill-border">
-                            <i class="tf-ion-ios-bolt-outline"></i>
+                    <div className="col-md-3 col-sm-6 col-xs-6 text-center ">
+                        <div className="counters-item kill-border">
+                            <i className="tf-ion-ios-bolt-outline"></i>
                             <div>
-                                <span class="counter" data-count="250">0</span>
+                                <span className="counter" data-count="250">0</span>
                             </div>
                             <h3>Cups of Coffee</h3>
                         </div>
@@ -238,41 +238,41 @@ export default function Services(props) {
             </div>
         </section>
 
-        <section class="testimonial section" id="testimonial">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
+        <section className="testimonial section" id="testimonial">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-12">
 
-                        <div class="testimonial-slider">
+                        <div className="testimonial-slider">
 
-                            <div class="item text-center">
-                                <i class="tf-ion-chatbubbles"></i>
+                            <div className="item text-center">
+                                <i className="tf-ion-chatbubbles"></i>
 
-                                <div class="client-details">
+                                <div className="client-details">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum nulla, soluta dolorum. Eos earum, magni asperiores, unde corporis labore, enim, voluptatum officiis voluptates alias natus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, officia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, quia?</p>
                                 </div>
 
-                                <div class="client-thumb">
-                                    <img src="images/client-logo/clients-1.jpg" class="img-fluid" alt="" />
+                                <div className="client-thumb">
+                                    <img src="images/client-logo/clients-1.jpg" className="img-fluid" alt="" />
                                 </div>
-                                <div class="client-meta">
+                                <div className="client-meta">
                                     <h3>William Martin</h3>
                                     <span>CEO , Company Name</span>
                                 </div>
 
                             </div>
 
-                            <div class="item text-center">
-                                <i class="tf-ion-chatbubbles"></i>
+                            <div className="item text-center">
+                                <i className="tf-ion-chatbubbles"></i>
 
-                                <div class="client-details">
+                                <div className="client-details">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum nulla, soluta dolorum. Eos earum, magni asperiores, unde corporis labore, enim, voluptatum officiis voluptates alias natus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, officia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, quia?</p>
                                 </div>
 
-                                <div class="client-thumb">
-                                    <img src="images/client-logo/clients-2.jpg" class="img-fluid" alt="" />
+                                <div className="client-thumb">
+                                    <img src="images/client-logo/clients-2.jpg" className="img-fluid" alt="" />
                                 </div>
-                                <div class="client-meta">
+                                <div className="client-meta">
                                     <h3>Emma Harrison</h3>
                                     <span>CEO , Company Name</span>
                                 </div>
@@ -281,17 +281,17 @@ export default function Services(props) {
 
 
 
-                            <div class="item text-center">
-                                <i class="tf-ion-chatbubbles"></i>
+                            <div className="item text-center">
+                                <i className="tf-ion-chatbubbles"></i>
 
-                                <div class="client-details">
+                                <div className="client-details">
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum nulla, soluta dolorum. Eos earum, magni asperiores, unde corporis labore, enim, voluptatum officiis voluptates alias natus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, officia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, quia?</p>
                                 </div>
 
-                                <div class="client-thumb">
-                                    <img src="images/client-logo/clients-3.jpg" class="img-fluid" alt="" />
+                                <div className="client-thumb">
+                                    <img src="images/client-logo/clients-3.jpg" className="img-fluid" alt="" />
                                 </div>
-                                <div class="client-meta">
+                                <div className="client-meta">
                                     <h3>Alexander Lucas</h3>
                                     <span>CEO , Company Name</span>
                                 </div>
