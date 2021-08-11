@@ -11,29 +11,23 @@ import DeleteProduct from "../pages/DeleteProduct";
 import AddProduct from "../pages/AddProduct";
 import AddCategory from "../pages/AddCategory";
 
-
-import axios from 'axios';
+import axios from "axios";
 
 import Home from "../pages/Home";
 export default function Routes() {
-
-  const [loginStatus, setLoginStatus] = useState(true);
+  const [loginStatus, setLoginStatus] = useState(false);
   const [activePage, setActivePage] = useState("Home");
   const [products, setProducts] = useState([]);
 
-
-
   const getProductsByCategory = (categoriId) => {
-    axios.get(`http://www.beesportwear.com/api/Product/${categoriId}`)
-      .then(res => {
+    axios
+      .get(`http://www.beesportwear.com/api/Product/${categoriId}`)
+      .then((res) => {
         setProducts(res.data);
-      })
-  }
-
-
+      });
+  };
 
   const returnPageByName = () => {
-
     let props = {
       loginStatus,
       activePage,
@@ -43,34 +37,34 @@ export default function Routes() {
       products,
       // allProducts,
       // getAllProductsByCategories,
-    }
+    };
 
     switch (activePage) {
       case "Home":
-        return <Home {...props} />
+        return <Home {...props} />;
       case "Contact":
-        return <Contact {...props} />
+        return <Contact {...props} />;
       case "About":
-        return <About {...props} />
+        return <About {...props} />;
       case "Contact":
-        return <Contact {...props} />
+        return <Contact {...props} />;
       case "Services":
-        return <Services {...props} />
+        return <Services {...props} />;
       case "Products":
-        return <Products {...props} />
+        return <Products {...props} />;
       case "Login":
-        return <Login {...props} />
+        return <Login {...props} />;
       case "DeleteProduct":
-        return <DeleteProduct {...props} />
+        return <DeleteProduct {...props} />;
       case "AddProduct":
-        return <AddProduct {...props} />
+        return <AddProduct {...props} />;
       case "AddCategory":
-        return <AddCategory {...props} />
+        return <AddCategory {...props} />;
 
       default:
         return <Home />;
     }
-  }
+  };
 
   return (
     <Router>
@@ -81,7 +75,7 @@ export default function Routes() {
         activePage={activePage}
         setActivePage={setActivePage}
         getProductsByCategory={getProductsByCategory}
-      // getAllProductsByCategories={getAllProductsByCategories}
+        // getAllProductsByCategories={getAllProductsByCategories}
       />
       {returnPageByName()}
       <Footer />
@@ -89,10 +83,12 @@ export default function Routes() {
   );
 }
 
-{/* <Switch>
+{
+  /* <Switch>
         <Route exact path="/" component={() => <Home />} />
         <Route exact path="/Contact" component={() => <Contact />} />
         <Route exact path="/About" component={() => <About />} />
         <Route exact path="/Services" component={() => <Services />} />
         <Route exact path="/Products" component={() => <Products />} />
-      </Switch> */}
+      </Switch> */
+}

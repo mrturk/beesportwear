@@ -15,7 +15,7 @@ namespace beesportwear.Controllers
             
             connstring = @"server=localhost;port=3306;userid=beesportwear;password=?j5Le47h;database=beesportwear;";
  
-           // connstring = @"server=localhost;userid=root;password=;database=beesportwear;";
+            //connstring = @"server=localhost;userid=root;password=;database=beesportwear;";
         }
 
         public bool Login(Users gelen)

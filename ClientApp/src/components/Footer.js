@@ -6,60 +6,22 @@ export default function Footer() {
         <div className="top-footer">
           <div className="container">
             <div className="row">
-              <div className="col-sm-3 col-md-3 col-lg-3">
-                <h3>Hakkımızda</h3>
-                <p>
-                  Bee SportsWear
-                </p>
-              </div>
-
-              <div className="col-sm-3 col-md-3 col-lg-3">
+              <div className="col-sm-12 col-md-12 col-lg-12">
                 <ul>
                   <li>
-                    <h3>Hizmetler</h3>
+                    <h1 style={{ color: "white" }}>
+                      Sosyal medyadan bize ulaşın
+                    </h1>
                   </li>
                   <li>
-                    <a href="#">Graphic Design</a>
+                    <a href="https://www.facebook.com/profile.php?id=100063552826601">
+                      <h3>FaceBook</h3>
+                    </a>
                   </li>
                   <li>
-                    <a href="#">Web Design</a>
-                  </li>
-                  <li>
-                    <a href="#">Web Development</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="col-sm-3 col-md-3 col-lg-3">
-                <ul>
-                  <li>
-                    <h3>Hızlı Bağlantılar</h3>
-                  </li>
-                  <li>
-                    <a href="#">İşbirlikleri</a>
-                  </li>
-                  <li>
-                    <a href="#">Hakkımızda</a>
-                  </li>
-                  <li>
-                    <a href="#">İletişim</a>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="col-sm-3 col-md-3 col-lg-3">
-                <ul>
-                  <li>
-                    <h3>Sosyal medyadan bize ulaşın</h3>
-                  </li>
-                  <li>
-                    <a href="#">Facebook</a>
-                  </li>
-                  <li>
-                    <a href="#">Twitter</a>
-                  </li>
-                  <li>
-                    <a href="#">Youtube</a>
+                    <a href="https://www.instagram.com/beesport14/">
+                      <h3>İnstagram</h3>
+                    </a>
                   </li>
                 </ul>
               </div>

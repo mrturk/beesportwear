@@ -71,6 +71,7 @@ export default function AddProduct(props) {
                     placeholder="Kategori"
                     className="form-control"
                   >
+                    <option value="-1"> Lütfen Seçiniz</option>
                     {categories.map((x) => {
                       return (
                         <option value={x.id} id={x.id}>

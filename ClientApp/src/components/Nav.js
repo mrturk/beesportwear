@@ -40,7 +40,7 @@ const Nav = (props) => {
               {props.activePage === "Products" ? (
                 getHeader()
               ) : (
-                <h2 style={{ color: "black" }}> SportWear</h2>
+                <h2 style={{ color: "#CEE124" }}> SportWear</h2>
               )}
             </a>
             <button
@@ -106,17 +106,6 @@ const Nav = (props) => {
                       onClick={() => props.setActivePage("About")}
                     >
                       Hakkımızda
-                    </a>
-                  </li>
-                )}
-
-                {!props.loginStatus && (
-                  <li className="nav-item ">
-                    <a
-                      className="nav-link"
-                      onClick={() => props.setActivePage("Services")}
-                    >
-                      Hizmetler
                     </a>
                   </li>
                 )}

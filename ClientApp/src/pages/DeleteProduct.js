@@ -165,10 +165,7 @@ export default function DeleteProduct(props) {
                       data-category="mix, design"
                     >
                       <div className="portfolio-block">
-                        <img
-                          className="img-fluid"
-                          src={"images/portfolio/portfolio-1.jpg"}
-                        />
+                        <img className="img-fluid" src={i.img_url} />
                         <div>
                           <div
                             className="caption"
