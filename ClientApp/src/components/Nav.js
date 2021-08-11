@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
@@ -37,6 +38,7 @@ const Nav = (props) => {
           <nav className="navbar navbar-expand-lg navbar-light">
             <a className="navbar-brand logo" href="/" style={{ display: 'flex' }}>
               <h2 style={{ color: "#CEE124" }}>Bee </h2>  {props.activePage === "Products" ? getHeader() : <h2 style={{ color: "black" }}> SportWear</h2>}
+
 
             </a>
             <button
@@ -126,6 +128,7 @@ const Nav = (props) => {
                     Çıkış Yap
                   </a>
                 </li>}
+
 
               </ul>
             </div>

@@ -101,10 +101,6 @@ export default function Home(props) {
         </a>
       </div>
 
-
-
-
-
       <section className="blog" id="blog">
         <div className="container">
           <div className="row">
@@ -163,6 +159,7 @@ export default function Home(props) {
                 </div>
               </div>
             </Modal>
+
 
 
 

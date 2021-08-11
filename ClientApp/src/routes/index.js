@@ -15,6 +15,9 @@ import AddCategory from "../pages/AddCategory";
 import axios from 'axios';
 
 import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Panel from "../pages/Panel";
+import Product from "../pages/Product";
 export default function Routes() {
 
   const [loginStatus, setLoginStatus] = useState(true);
