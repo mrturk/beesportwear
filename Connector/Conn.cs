@@ -13,9 +13,9 @@ namespace beesportwear.Controllers
         public Conn()
         { 
             
-            connstring = @"server=localhost;port=3306;userid=beesportwear;password=?j5Le47h;database=beesportwear;";
+           // connstring = @"server=localhost;port=3306;userid=beesportwear;password=?j5Le47h;database=beesportwear;";
  
-          //  connstring = @"server=localhost;userid=root;password=;database=beesportwear;";
+            connstring = @"server=localhost;userid=root;password=;database=beesportwear;";
         }
 
         public bool Login(Users gelen)
@@ -80,6 +80,57 @@ namespace beesportwear.Controllers
             return response;
         }
 
+        public bool deleteCategory(DeleteItem request)
+        {
+            bool response = false;
+            try
+            {
+                using (MySqlConnection connMysql = new MySqlConnection(connstring))
+                {
+                    using (MySqlCommand command = connMysql.CreateCommand())
+                    {
+                        connMysql.Open();
+                        command.CommandText = "delete from kategoriler where id=@Id";
+                        command.Parameters.AddWithValue("@Id", request.id);
+                        command.CommandType = System.Data.CommandType.Text;
+                        command.ExecuteNonQuery();
+                        connMysql.Close();
+                        response = true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                response = false;
+            }
+            return response;
+        }
+
+        public bool deleteProduct(DeleteItem request)
+        {
+            bool response = false;
+            try
+            {
+                using (MySqlConnection connMysql = new MySqlConnection(connstring))
+                {
+                    using (MySqlCommand command = connMysql.CreateCommand())
+                    {
+                        connMysql.Open();
+                        command.CommandText = "delete from urunler where id=@Id";
+                        command.Parameters.AddWithValue("@Id", request.id);
+                        command.CommandType = System.Data.CommandType.Text;
+                        command.ExecuteNonQuery();
+                        connMysql.Close();
+                        response = true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                response = false;
+            }
+            return response;
+        }
 
         public string getCategory(int gelen)
         {
@@ -223,5 +274,43 @@ namespace beesportwear.Controllers
             return alldata;
         }
 
+        public List<Products> getAllProduct()
+        {
+            List<Products> alldata = new List<Products>();
+            try
+            {
+                using (MySqlConnection connMysql = new MySqlConnection(connstring))
+                {
+                    using (MySqlCommand command = connMysql.CreateCommand())
+                    {
+                        command.CommandText = "SELECT * FROM urunler";
+                        command.CommandType = System.Data.CommandType.Text;
+                        command.Connection = connMysql;
+                        connMysql.Open();
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                alldata.Add(new Products
+                                {
+                                    kategori_adi = reader.GetString(reader.GetOrdinal("kategori_adi")),
+                                    id = reader.GetInt32(reader.GetOrdinal("id")),
+                                    aciklama=reader.GetString(reader.GetOrdinal("aciklama")),
+                                    fiyat= reader.GetInt32(reader.GetOrdinal("fiyat")),
+                                    img_url= reader.GetString(reader.GetOrdinal("img_url")),
+                                    urun_cinsi= reader.GetString(reader.GetOrdinal("urun_cinsi"))
+                                });
+                            }
+                        }
+                        connMysql.Close();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return alldata;
+            }
+            return alldata;
+        }
     }
 }
