@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Modal } from "antd";
+import { Modal, Spin } from "antd";
+import axios from "axios";
 
 const ModalContentStyle = {
   textOverflow: "ellipsis",
@@ -8,7 +9,10 @@ const ModalContentStyle = {
 };
 
 export default function Home(props) {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const [spinnerStatus, setSpinnerStatus] = useState(false);
+  const [topProducts, setTopProducts] = useState([]);
+
   const [currentProduct, setCurrentProduct] = useState({
     id: null,
     kategori_adi: "",
@@ -18,18 +22,53 @@ export default function Home(props) {
     img_url: "",
   });
 
-  const showModal = (productInfo) => {
-    setCurrentProduct(productInfo);
-    setIsModalVisible(true);
+  const getProducts = () => {
+    setSpinnerStatus(true);
+    axios
+      .get(`http://www.beesportwear.com/api/Product/getAllProduct`)
+      .then((res) => {
+
+        if (res.data.length) {
+          let topProductIndexes = [];
+
+          while (1) {
+            let randomProductIndex = Math.floor(Math.random() * res.data.length);
+            if (!topProductIndexes.includes(randomProductIndex) && topProductIndexes.length < 3) {
+              topProductIndexes.push(randomProductIndex);
+            }
+
+            if (topProductIndexes.length === 3 || topProductIndexes.length === res.data.length) break;
+          }
+
+          let __topProducts = [];
+          topProductIndexes.forEach(i => {
+            __topProducts.push({
+              id: res.data[i].id,
+              kategori_adi: res.data[i].kategori_adi,
+              urun_cinsi: res.data[i].urun_cinsi,
+              fiyat: res.data[i].fiyat,
+              aciklama: res.data[i].aciklama,
+              img_url: res.data[i].img_url
+            })
+          });
+
+          setTopProducts(__topProducts);
+          setSpinnerStatus(false);
+        }
+        else {
+          setSpinnerStatus(false);
+        }
+
+
+      }).catch(err => {
+      })
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
+  useEffect(() => {
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+    getProducts();
+  }, [])
+
 
   return (
     <>
@@ -77,7 +116,7 @@ export default function Home(props) {
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
               }}
             >
-              <h2>Bee Sport Wear</h2>
+              <h2 style={{ color: "#CEE124" }}>Bee SportsWear</h2>
             </div>
           </div>
           <div
@@ -99,7 +138,7 @@ export default function Home(props) {
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
               }}
             >
-              <h2>Bee Sport Wear</h2>
+              <h2 style={{ color: "#CEE124" }}>Bee SportsWear</h2>
             </div>
           </div>
           <div className="carousel-item">
@@ -118,7 +157,7 @@ export default function Home(props) {
                 backgroundColor: "rgba(0, 0, 0, 0.5)",
               }}
             >
-              <h2>Bee SportsWear</h2>
+              <h2 style={{ color: "#CEE124" }}>Bee SportsWear</h2>
             </div>
           </div>
         </div>
@@ -148,21 +187,64 @@ export default function Home(props) {
         </a>
       </div>
 
-      <section className="blog" id="blog">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="title text-center ">
-                <h2>
-                  {" "}
-                  Popüler <span className="color">Ürünler</span>
-                </h2>
-                <div className="border"></div>
+      <Spin size={"large"} spinning={spinnerStatus} style={{ width: "100%", height: "100%" }}>
+        <div
+          style={{ backgroundColor: "white", width: "100vw", height: "90px" }}
+        ></div>
+        <section className="portfolio section-sm" id="portfolio">
+          <div className="container-fluid">
+            <div className="row ">
+              <div className="col-lg-12">
+                {topProducts.length && <div className="title text-center">
+                  <h2>Popüler Ürünler</h2>
+                  <div className="border"></div>
+                </div>}
+
+
+                <div className="row filtr-container">
+                  {topProducts.map((i) => {
+                    return (
+                      <div
+                        key={i.id.toString()}
+                        className="col-md-4 col-sm-6 col-xs-6 filtr-item "
+                        data-category="mix, design"
+                      >
+                        <div className="portfolio-block">
+                          <img className="img-fluid" src={i.img_url} />
+                          <div>
+                            <div className="caption">
+                              <h4 style={{ color: "white" }}>
+                                Fiyat: {i.fiyat} TL
+                              </h4>
+                              <h4 style={{ color: "white" }}>
+                                Kategori: {i.kategori_adi}
+                              </h4>
+                              <h4 style={{ color: "white" }}>
+                                Ürün Cinsi: {i.urun_cinsi}
+                              </h4>
+                              <h4 style={{ color: "white" }}>
+                                Açıklama: {i.aciklama}
+                              </h4>
+                              <h4>
+                                <a
+                                  href="https://api.whatsapp.com/send?phone=+905332321455&text=Merhaba."
+                                  target="_blank"
+                                >
+                                  ÜRÜN SİPARİŞİ İÇİN TIKLAYINIZ
+                                </a>
+                              </h4>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Spin>
     </>
   );
 }

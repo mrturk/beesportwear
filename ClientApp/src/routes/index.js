@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "../components/Footer";
 import Nav from "../components/Nav";
@@ -10,6 +10,8 @@ import Products from "../pages/Products";
 import DeleteProduct from "../pages/DeleteProduct";
 import AddProduct from "../pages/AddProduct";
 import AddCategory from "../pages/AddCategory";
+import DeleteCategory from "../pages/DeleteCategory";
+
 
 import axios from "axios";
 
@@ -18,14 +20,20 @@ export default function Routes() {
   const [loginStatus, setLoginStatus] = useState(false);
   const [activePage, setActivePage] = useState("Home");
   const [products, setProducts] = useState([]);
+  const [productsSpinnerStatus, setProductsSpinnerStatus] = useState(false);
 
   const getProductsByCategory = (categoriId) => {
+    setProductsSpinnerStatus(true);
     axios
       .get(`http://www.beesportwear.com/api/Product/${categoriId}`)
       .then((res) => {
         setProducts(res.data);
-      });
+        setProductsSpinnerStatus(false);
+      }).catch(err => {
+        setProductsSpinnerStatus(false);
+      })
   };
+
 
   const returnPageByName = () => {
     let props = {
@@ -35,6 +43,7 @@ export default function Routes() {
       setActivePage,
       getProductsByCategory,
       products,
+      productsSpinnerStatus
       // allProducts,
       // getAllProductsByCategories,
     };
@@ -60,6 +69,8 @@ export default function Routes() {
         return <AddProduct {...props} />;
       case "AddCategory":
         return <AddCategory {...props} />;
+      case "DeleteCategory":
+        return <DeleteCategory {...props} />;
 
       default:
         return <Home />;
@@ -75,20 +86,9 @@ export default function Routes() {
         activePage={activePage}
         setActivePage={setActivePage}
         getProductsByCategory={getProductsByCategory}
-        // getAllProductsByCategories={getAllProductsByCategories}
       />
       {returnPageByName()}
       <Footer />
     </Router>
   );
-}
-
-{
-  /* <Switch>
-        <Route exact path="/" component={() => <Home />} />
-        <Route exact path="/Contact" component={() => <Contact />} />
-        <Route exact path="/About" component={() => <About />} />
-        <Route exact path="/Services" component={() => <Services />} />
-        <Route exact path="/Products" component={() => <Products />} />
-      </Switch> */
 }

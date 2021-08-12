@@ -33,7 +33,8 @@ const Nav = (props) => {
           <nav className="navbar navbar-expand-lg navbar-light">
             <a
               className="navbar-brand logo"
-              href="/"
+              // href="/"
+              onClick={() => props.setActivePage("Home")}
               style={{ display: "flex" }}
             >
               <h2 style={{ color: "#CEE124" }}>Bee </h2>{" "}
@@ -70,7 +71,7 @@ const Nav = (props) => {
                   <li className="nav-item dropdown">
                     <a
                       className="nav-link dropdown-toggle"
-                      href="#"
+                      // href="#"
                       id="navbarDropdown"
                       role="button"
                       data-toggle="dropdown"

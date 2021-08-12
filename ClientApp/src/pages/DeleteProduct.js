@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Modal, Button } from "antd";
+import { Modal, Button, Spin, message } from "antd";
 
 const ModalContentStyle = {
   textOverflow: "ellipsis",
@@ -9,6 +9,8 @@ const ModalContentStyle = {
 };
 
 export default function DeleteProduct(props) {
+
+  const [spinnerStatus, setSpinnerStatus] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
   const [currentProduct, setCurrentProduct] = useState({
@@ -20,11 +22,21 @@ export default function DeleteProduct(props) {
     img_url: "",
   });
 
+  const success = () => {
+    message.success("Ürün Silme Başarılı!");
+  };
+
+  const error = () => {
+    message.error("Ürünü silerken bir hata ile karşılaşıldı...");
+  };
+
   const getAllProductsByCategories = () => {
+    setSpinnerStatus(true);
     axios
       .get(`http://www.beesportwear.com/api/Product/getAllProduct`)
       .then((res) => {
         setAllProducts(res.data);
+        setSpinnerStatus(false);
       });
   };
 
@@ -33,12 +45,18 @@ export default function DeleteProduct(props) {
   }, []);
 
   const deleteProduct = (productId) => {
+    setSpinnerStatus(true);
     const payload = { id: productId };
     axios
       .post(`http://www.beesportwear.com/api/Product/deleteProduct`, payload)
       .then((res) => {
         getAllProductsByCategories();
-      });
+        success();
+        setSpinnerStatus(false);
+      }).catch(err => {
+        error();
+        setSpinnerStatus(false);
+      })
   };
 
   const showModal = (productInfo) => {
@@ -73,7 +91,7 @@ export default function DeleteProduct(props) {
             >
               <img
                 style={{ height: "50vh", width: "inherit" }}
-                src={"images/portfolio/portfolio-1.jpg"}
+                src={currentProduct.img_url}
               />
             </div>
 
@@ -144,60 +162,62 @@ export default function DeleteProduct(props) {
           </div>
         </div>
       </Modal>
-      <div
-        style={{ backgroundColor: "black", width: "100vw", height: "90px" }}
-      ></div>
-      <section className="portfolio section-sm" id="portfolio">
-        <div className="container-fluid">
-          <div className="row ">
-            <div className="col-lg-12">
-              <div className="title text-center">
-                <h2>Ürünler</h2>
-                <div className="border"></div>
-              </div>
+      <Spin size={"large"} spinning={spinnerStatus} style={{ width: "100%", height: "100%" }}>
+        <div
+          style={{ backgroundColor: "black", width: "100vw", height: "90px" }}
+        ></div>
+        <section className="portfolio section-sm" id="portfolio">
+          <div className="container-fluid">
+            <div className="row ">
+              <div className="col-lg-12">
+                <div className="title text-center">
+                  <h2>Ürünler</h2>
+                  <div className="border"></div>
+                </div>
 
-              <div className="row filtr-container">
-                {allProducts.map((i) => {
-                  return (
-                    <div
-                      key={i.id.toString()}
-                      className="col-md-3 col-sm-6 col-xs-6 filtr-item "
-                      data-category="mix, design"
-                    >
-                      <div className="portfolio-block">
-                        <img className="img-fluid" src={i.img_url} />
-                        <div>
-                          <div
-                            className="caption"
-                            onClick={function (e) {
-                              showModal(i);
-                            }}
-                          >
-                            <a className="search-icon">
-                              <i className="tf-ion-ios-search-strong"></i>
-                            </a>
-                            <h4>
-                              <a>Ürün Detayları</a>
-                            </h4>
+                <div className="row filtr-container">
+                  {allProducts.map((i) => {
+                    return (
+                      <div
+                        key={i.id.toString()}
+                        className="col-md-3 col-sm-6 col-xs-6 filtr-item "
+                        data-category="mix, design"
+                      >
+                        <div className="portfolio-block">
+                          <img className="img-fluid" src={i.img_url} />
+                          <div>
+                            <div
+                              className="caption"
+                              onClick={function (e) {
+                                showModal(i);
+                              }}
+                            >
+                              <a className="search-icon">
+                                <i className="tf-ion-ios-search-strong"></i>
+                              </a>
+                              <h4>
+                                <a>Ürün Detayları</a>
+                              </h4>
+                            </div>
                           </div>
+                          <Button
+                            block
+                            type="primary"
+                            danger
+                            onClick={() => deleteProduct(i.id)}
+                          >
+                            Sil
+                          </Button>
                         </div>
-                        <Button
-                          block
-                          type="primary"
-                          danger
-                          onClick={() => deleteProduct(i.id)}
-                        >
-                          Sil
-                        </Button>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Spin>
     </>
   );
 }
